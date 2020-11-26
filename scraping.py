@@ -1,7 +1,9 @@
 # Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
+import re
 import pandas as pd
+import time
 import datetime as dt
 
 
@@ -17,6 +19,7 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
+        "hemisphere": hemisphere_data(browser),  
         "last_modified": dt.datetime.now()
     }
 
@@ -87,10 +90,14 @@ def featured_image(browser):
 def mars_facts():
     # Add try/except for error handling
     try:
+        #print('adsf')
+        print(pd.read_html('http://space-facts.com/mars/'))
         # Use 'read_html' to scrape the facts table into a dataframe
         df = pd.read_html('http://space-facts.com/mars/')[0]
 
     except BaseException:
+        print('errored')
+        #raise
         return None
 
     # Assign columns and set index of dataframe
@@ -99,6 +106,40 @@ def mars_facts():
 
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
+
+def hemisphere_data(browser):
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars//'
+    browser.visit(url)
+    html = browser.html
+    html_soup = soup(html, 'html.parser')
+    description=html_soup.find_all("div",class_='item')
+    hemisphere_image_urls = []
+
+    for titles in description:
+        #find each title
+        title=titles.h3.text
+        #click title
+        browser.click_link_by_partial_text(title)
+        #wait for 2 sec after click title
+        time.sleep(2)
+        
+        #parse the new page
+        html = browser.html
+        new_soup = soup(html, 'html.parser')
+        
+        try:
+            #chain .find by class "downloads" and "a" tag to get ['href'] link  
+            url=new_soup.find("div",class_="downloads").find("a")['href']
+        except AttributeError:
+            return None
+
+        #append to dictionary
+        dicts={"title":title,"img_url":url}                                                                                                                                                                                                                                                                                                                                                                                                        
+        hemisphere_image_urls.append(dicts)
+        
+        browser.back()
+
+    return hemisphere_image_urls
 
 if __name__ == "__main__":
 
