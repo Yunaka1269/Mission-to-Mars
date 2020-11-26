@@ -3,6 +3,7 @@
 ##Robin would like to adjust her web app to include all four of the hemisphere images and alter web design by using bootstrap. Modify scraping.py file so that click button will initiate chromedriver, splinter, and beautifulsoup to scrape full-image url and its title. 
 
 ###Resources
+
 url:  
 	
 	https://mars.nasa.gov/news/
@@ -26,21 +27,21 @@ Software:
 
 On scraping.py file, we created a new function called hemisphere_data that will;
 
-	loop through individual hemisphere page by clicking <h3> title text in html
+	-loop through individual hemisphere page by clicking <h3> title text in html
 	
-	find full resolution image url under <href> inside <a> tag with class "downloads"
+	-find full resolution image url under <href> inside <a> tag with class "downloads"
 	
-	append both title and full-image url to the list 
+	-append both title and full-image url to the list 
 
 inside index.html;
 
-	use code {% for hemisphere in mars.hemisphere %}/{% endfor %} to make a loop to display all 4 images 
+	-use code {% for hemisphere in mars.hemisphere %}/{% endfor %} to make a loop to display all 4 images 
 
 Bootstrap;
 
-	style "Scrape New Data" button
+	-style "Scrape New Data" button
   
-	make all 4 pictures in horizontal thumbnails
+	-make all 4 pictures in horizontal thumbnails
 
 ###Summary
 
