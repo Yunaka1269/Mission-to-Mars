@@ -22,7 +22,7 @@ Software:
   	ChromeDriver 86.0.4240.22
   	MongoDB v4.4.1
   
-##Results:
+###Results:
 
 On scraping.py file, we created a new function called hemisphere_data that will
   -loop through individual hemisphere page by clicking <h3> title text in html
