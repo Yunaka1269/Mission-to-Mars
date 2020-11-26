@@ -23,6 +23,7 @@ Software:
   	MongoDB v4.4.1
   
 ##Results:
+
 On scraping.py file, we created a new function called hemisphere_data that will
   -loop through individual hemisphere page by clicking <h3> title text in html
   -find full resolution image url under <href> inside <a> tag with class "downloads"
