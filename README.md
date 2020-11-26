@@ -4,6 +4,7 @@
 
 ###Resources
 url:  
+	
 	https://mars.nasa.gov/news/
 	
 	https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars
@@ -15,6 +16,7 @@ url:
 	https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars//
 
 Software: 	
+
 	Jupyter Notebook 6.1.4
 	Visual Studio Code 1.51.1
   	ChromeDriver 86.0.4240.22
