@@ -24,9 +24,10 @@ def scrape():
    #created a new variable to hold the newly scraped data
    #referencing the scrape_all function in the scraping.py file exported from Jupyter Notebook
    mars_data = scraping.scrape_all()
+   print(mars_data)
    #need to update the database using .update()
    mars.update({}, mars_data, upsert=True)
    return "Scraping Successful!"
 
 if __name__ == "__main__":
-   app.run()
+   app.run(debug=True)
